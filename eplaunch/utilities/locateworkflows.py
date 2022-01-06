@@ -17,7 +17,7 @@ class LocateWorkflows(object):
     def find_eplus_workflows(self):
         search_roots = {
             Platform.WINDOWS: ["%s:\\" % c for c in string.ascii_uppercase],
-            Platform.LINUX: ['/usr/local/bin/', '/tmp/'],
+            Platform.LINUX: ['/usr/local/bin/', '/tmp/','/home'],
             Platform.MAC: ['/Applications/', '/tmp/'],
             Platform.UNKNOWN: [],
         }
@@ -40,6 +40,7 @@ class LocateWorkflows(object):
             Platform.MAC: 'energyplus',
             Platform.UNKNOWN: ''
         }
+        
         for workspace_directory in self.list_of_found_directories:
             energyplus_directory, folder_name = os.path.split(workspace_directory)
             energyplus_application = os.path.join(energyplus_directory, ep_names[Platform.get_current_platform()])

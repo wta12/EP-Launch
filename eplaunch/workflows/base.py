@@ -76,7 +76,10 @@ class BaseEPLaunchWorkflow1(object):
         :param message: A message to be sent to the GUI from the workflow
         :return: None
         """
-        self._callback(self.my_id, message)
+        if self.my_id:
+            self._callback(self.my_id, message)
+        else:
+            print("CallBack: %s" % message)
 
     def main(self, run_directory, file_name, args):
         """
